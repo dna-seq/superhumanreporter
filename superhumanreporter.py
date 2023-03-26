@@ -59,7 +59,7 @@ class Reporter(CravatReport):
     def write_data(self):
         # self.data = {"test1":[1,2,3], "test2":["aa", "bbb", "cccc"]}
         data = {}
-        data["superhuman"] = self.write_table("superhuman", "id", True)
+        data["superhuman"] = self.write_table("superhuman", "id", False)
         self.outfile.write(self.template.render(data=data))
 
 
