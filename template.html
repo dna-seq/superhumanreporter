@@ -105,46 +105,20 @@ section{
 	margin-right: -2.5vw;
 }
 img{
-	margin-top: 1vw;
 	height: 9vw;
 }
-		/*button style*/
-		div.ui.tiny.circular.compact.positive.button {
-			border-radius: 10em;
-			background-color: #86caf7;
-			color: #fff;
-			padding: 0.58928571em 1.125em 0.58928571em;
-			cursor: pointer;
-			display: inline-block;
-			min-height: 1em;
-			outline: 0;
-			border: none;
-			vertical-align: baseline;
-			margin: 0 0.25em 0 0;
-			font-weight: 700;
-			line-height: 1em;
-			font-style: normal;
-			text-align: center;
-			}
-		div.ui.tiny.circular.compact.negative.button {
-			border-radius: 10em;
-			background-color: #a6f069;
-			color: #fff;
-			padding: 0.58928571em 1.125em 0.58928571em;
-			cursor: pointer;
-			display: inline-block;
-			min-height: 1em;
-			outline: 0;
-			border: none;
-			vertical-align: baseline;
-			margin: 0 0.25em 0 0;
-			font-weight: 700;
-			line-height: 1em;
-			font-style: normal;
-			text-align: center;
-		}
 
-
+button{
+	background-color: #30849900;
+	cursor: pointer;
+	border: none;
+	display: flex;
+	flex-direction: row;
+	justify-content: left;
+	width: 95%;
+	height: 3vw;
+	border-bottom: 0.1vw solid rgb(69, 70, 92);
+}
 
 
 			
@@ -167,15 +141,21 @@ img{
         line-height: 1.7;
         font-weight: 500;
     }
-	.board p.attention{
+	.attention{
 		font-size: 1.6vw;
 		margin-top: 2.5vw;
-		margin-bottom: 2vw;
-		font-weight: 600;
-		color:rgb(122, 124, 158);
+		font-weight: 500;
+		color:#61627e;
 	}
-
-
+.purple{
+	filter: invert(40%) sepia(12%) saturate(821%) hue-rotate(200deg) brightness(93%) contrast(93%);
+	height: 2vw;
+	margin-right: 1vw;
+	transition: transform 0.3s;
+}
+button.active .purple{
+	transform: rotate(90deg);
+}
 	
 
 	
@@ -189,46 +169,21 @@ img{
 		margin-left: 5vw;
     }
 
-
-
-    /* below is style for navigation button */
-    #toTop{
-		z-index: 100;
-        height: 70px;
-        width: 70px;
-        background-color: #308499;
-        border-radius: 50%;
-        position: fixed;
-        right: 2.35%;
-        bottom: 10%;
-        display:none;	
-		box-shadow: 3px 3px 15px rgb(30, 77, 88, 0.7);
-    }
-
-    #toTop:hover{
-        background-color:#56C3BD;
-    }
-    .arrow{
-        position: absolute;
-        bottom: 10%;
-        z-index: 10;
-    }
-    .bodypart{
-        width: 0;
-        height: 0;
-        border-left: 16px solid transparent;
-        border-right: 16px solid transparent;
-        border-bottom: 16px solid white;
-        right: 20px;
-        top:20%;
-    }
-    .line{
-        right: 31px;
-        bottom: 18px;
-        background: white;
-        width: 8px;
-        height: 33px;
-    }
+.hidden{
+	width: 100%;
+	padding-top: 0vw;
+	color:#727494;
+	font-size: 1.2vw;
+	line-height: 0.5vw;
+  max-height: 0;
+  overflow: hidden;
+  transition: max-height 0.2s ease-out;
+  padding-right: 0.8vw;
+  padding-left: 0.2vw;
+}
+.hidden p{
+	line-height: 1.5vw;
+}
 
 
 	@media only screen and (max-width: 1400px) {
@@ -248,10 +203,9 @@ img{
 			width: 80%;
 			margin-bottom: 10vw;
 		}
-		.board p.attention{
-		font-size: 3.3vw;
+		.attention{
+		font-size: 3.1vw;
 		margin-top: 4vw;
-		margin-bottom: 3vw;
 		}
 		table.ui td, table.ui th{
 		font-size: 2vw;
@@ -262,6 +216,18 @@ img{
 		width: 4vw;
 		word-break: break-all;
 		}
+button{
+	height: 5vw;
+}
+.purple{
+	height: 3.5vw;
+}
+.hidden{
+	font-size: 2.3vw;
+}
+.hidden p{
+	line-height: 2.5vw;
+}
 }
 	@media only screen and (max-width: 600px){
 		.heading{
@@ -284,10 +250,9 @@ img{
 			width: 80%;
 			margin-bottom: 20vw;
 		}
-		.board p.attention{
-		font-size: 6vw;
+		.attention{
+		font-size: 5vw;
 		margin-top: 6vw;
-		margin-bottom: 5vw;
 		}
 		table.ui td, table.ui th{
 			padding: 5px 5px 5px 3px;
@@ -304,68 +269,23 @@ img{
 		width: 4vw;
 		word-break: break-all;
 		}
+		button{
+			height: 10vw;
+		}
+		.purple{
+			width: 8vw;
+			height: 7vw;
+			margin-left: 0;
+		}.hidden{
+			width: 100%;
+			font-size: 4vw;
+		}
+		.hidden p{
+			line-height: 4.4vw;
+		}
 	}
 </style>
-
-<script>
-    function expand(obj){
-        var tdEl = obj.children[0];
-        var el = obj.nextSibling;
-        if (el.nodeName == "#text")
-            el = el.nextSibling;
-        var parent = el.parentElement;
-        parent = parent.parentElement.parentElement;
-        parent.style.maxHeight= Number(parent.style.maxHeight.slice(0, -2)) + 1300 + "px";
-        el.style.display = "";
-        tdEl.innerHTML = "<div class=\"ui tiny circular compact negative button\">-</div>";
-        parent.maxHeight= Number(parent.style.maxHeight.slice(0, -2)) + el.style.height + "px";
-        //obj.style.backgroundColor = "#e0e0e0";
-    }
     
-    
-    
-    
-    function collapse(obj){
-        var tdEl = obj.children[0];
-        var el = obj.nextSibling;
-        if (el.nodeName == "#text")
-            el = el.nextSibling;
-        var parent = el.parentElement;
-        parent = parent.parentElement.parentElement;
-        parent.style.maxHeight= Number(parent.style.maxHeight.slice(0, -2)) - 1300 + "px";
-        el.style.display = "none";
-        tdEl.innerHTML = "<div class=\"ui tiny circular compact positive button\">+</div>";
-        //obj.style.backgroundColor = "#eeeeee";
-    }
-    
-    function doOnClick(obj){
-        var tdEl = obj.children[0];
-        var el = obj.nextSibling;
-        if (el.nodeName == "#text")
-            el = el.nextSibling;
-    
-        if(el.style.display == "none")
-            expand(obj);
-             /*el.parentElement.maxHeight += el.clientHeight;*/
-        else
-            collapse(obj);
-    }
-    
-    function collapseExpandAll(obj, id){
-        var el = document.getElementById(id);
-        if(obj.innerHTML == "<div class=\"ui tiny circular compact positive button\">+</div>"){
-            for(var i in el.children)
-                if(el.children[i].children && el.children[i].children.length > 3)
-                    expand(el.children[i]);
-            obj.innerHTML = "<div class=\"ui tiny circular compact negative button\">-</div>";
-        } else {
-            for(var i in el.children)
-                if(el.children[i].children && el.children[i].children.length > 3)
-                    collapse(el.children[i]);
-            obj.innerHTML = "<div class=\"ui tiny circular compact positive button\">+</div>";
-        }
-    }
-</script>
 </head>
 
 <body>
@@ -379,9 +299,10 @@ img{
 		<p></p>
 		<p>Based on the  <a href="https://arep.med.harvard.edu/gmc/protect.html">spreadsheet</a> by George Church.
 		</p>
-	<p class="attention">Pay attention!</p>
-	<p>It's important to understand that having the "superability" gene variant does not guarantee that you will definitely have the corresponding superpower. This gene variant may only predispose you to the trait, meaning that it increases the likelihood of developing the superpower, but it is not a guarantee.</p>
+	<button class="attention accordion"><img class = "purple" src="https://www.flaticon.com/svg/vstatic/svg/3916/3916869.svg?token=exp=1679854380~hmac=79eb2a497f6f522bc14434270259579a"><div>Pay attention!</div></button>
+	<div class="hidden"><p>It's important to understand that having the "superability" gene variant does not guarantee that you will definitely have the corresponding superpower. This gene variant may only predispose you to the trait, meaning that it increases the likelihood of developing the superpower, but it is not a guarantee.</p>
 	<p>This is because genes can have varying degrees of expressivity (which refers to how strongly a gene is expressed in an individual) and penetrance (which refers to the proportion of individuals with a particular gene variant who actually express the associated trait). Even if you possess the "superability" gene, other factors like gene interactions and environmental factors can also affect whether the trait is manifested. So, while having the gene variant may increase your chances of developing the superpower, it's not a certainty.</p></div>
+</div>
 	<table class="ui selectable celled teal table">
 		<thead>
 			<tr class="nothover">
@@ -406,81 +327,6 @@ img{
 	</table>
 </div>
 <script>
-const BtnBackToTop = document.querySelector("#toTop")
-
-window.addEventListener("scroll", scrollFunction);
-
-function scrollFunction() {
-  if (window.pageYOffset > 300) { // Show backToTopButton
-    if(!BtnBackToTop.classList.contains("btnEntrance")) {
-		BtnBackToTop.classList.remove("btnExit");
-		BtnBackToTop.classList.add("btnEntrance");
-		BtnBackToTop.style.display = "block";
-    }
-  }
-  else { // Hide backToTopButton
-    if(BtnBackToTop.classList.contains("btnEntrance")) {
-		BtnBackToTop.classList.remove("btnEntrance");
-		BtnBackToTop.classList.add("btnExit");
-      	setTimeout(function() {
-        BtnBackToTop.style.display = "none";
-      }, 250);
-    }
-  }
-}
-
-
-
-BtnBackToTop.addEventListener("click", backToTop);
-
-function backToTop() {
-	window.scrollTo(0, 0);
-}
-let currentWidth = document.body.clientWidth;
-
-let styles = calculatingStyles(currentWidth);
-
-window.addEventListener("resize", function(event) {
-    currentWidth = document.body.clientWidth;
-	styles = calculatingStyles(currentWidth);
-	var acc = document.getElementsByClassName("accordion");
-	var i;
-	for (i = 0; i < acc.length; i++) {
-		if (acc[i].classList.contains("panel-description")){
-		acc[i].classList.toggle("active");
-		acc[i].style.borderRadius = "10px 10px 0px 0px"
-		var panel = acc[i].nextElementSibling;
-		panel.style.display="block"
-		panel.style.maxHeight = panel.scrollHeight + "px";
-	}
-	}
-})
-
-function calculatingStyles(width){
-
-let listOfStyles = {widthForActive:"", widthForClosed:"", marginForActive:"", marginForClosed:""};
-
-if (width >= 1400){
-	listOfStyles.widthForActive = "85";
-	listOfStyles.widthForClosed = "50";
-	console.log(listOfStyles)
-}else if((width < 1400) && (currentWidth >= 600)){
-		listOfStyles.widthForActive = "98";
-		listOfStyles.widthForClosed = "80";
-} else {
-	listOfStyles.widthForActive = "100";
-	listOfStyles.widthForClosed = "95";
-}
-listOfStyles.marginForActive = (100-listOfStyles.widthForActive)/2 + '%';
-listOfStyles.marginForClosed = (100-listOfStyles.widthForClosed)/2 + '%';
-listOfStyles.widthForActive = listOfStyles.widthForActive + "%";
-listOfStyles.widthForClosed = listOfStyles.widthForClosed + "%";
-
-return listOfStyles
-
-};
-
-
 
 
 
@@ -488,260 +334,17 @@ var acc = document.getElementsByClassName("accordion");
 var i;
 
 for (i = 0; i < acc.length; i++) {
-	if (acc[i].nextElementSibling.classList.contains("panel-description")){
-		acc[i].classList.toggle("active");
-		acc[i].style.borderRadius = "10px 10px 0px 0px"
-		var panel = acc[i].nextElementSibling;
-		panel.style.display="block"
-		panel.style.maxHeight = panel.scrollHeight + "px";
-	}
   acc[i].addEventListener("click", function() {
     this.classList.toggle("active");
-	let button = this;
     var panel = this.nextElementSibling;
     if (panel.style.maxHeight) {
-		let height = panel.style.maxHeight;
-		let time = parseInt((height.slice(0,-2)))/7;
-		if (time>300){
-			time =200;
-		}
-        panel.style.maxHeight = null;
-	    setTimeout(function() {
-			panel.style.display = "none"
-			button.style.borderRadius = "10px";
-			if (button.classList.contains("accordion-result") || button.classList.contains("accordion-heading")){
-				button.style.width = styles.widthForClosed;
-				button.style.marginRight = styles.marginForClosed;
-				button.style.marginLeft = styles.marginForClosed;
-	}
-      }, time);
+      panel.style.maxHeight = null;
     } else {
-		if (button.classList.contains("accordion-result") || button.classList.contains("accordion-heading")){
-			button.style.width =  styles.widthForActive;
-			button.style.marginRight = styles.marginForActive;
-			button.style.marginLeft = styles.marginForActive;
-			setTimeout(function() {
-			panel.style.display = "block"
-			panel.style.maxHeight = panel.scrollHeight + "px";
-			panel.parentElement.style.maxHeight = Number(panel.parentElement.style.maxHeight.slice(0, -2)) + panel.scrollHeight + "px";
-			button.style.borderRadius = "10px 10px 0px 0px";
-		}, 150);}
-		else{
-			panel.style.display = "block"
-			panel.style.maxHeight = panel.scrollHeight + "px";
-			panel.parentElement.style.maxHeight = Number(panel.parentElement.style.maxHeight.slice(0, -2)) + panel.scrollHeight + "px";
-			button.style.borderRadius = "10px 10px 0px 0px"
-		}
-	}
+      panel.style.maxHeight = panel.scrollHeight + "px";
+    }
   });
 }
 
-
-</script>
-<style>
-
-.btnExit{
-			animation-duration: 0.5s;
-			animation-fill-mode: both;
-			animation-name: btnExit;
-	}
-
-@keyframes btnExit {
-	from {
-				opacity: 1;
-			}
-			to {
-				opacity: 0;
-				transform: scale3d(0.8, 0.8, 0.8);
-			}
-			}
-
-
-.btnEntrance{
-			animation-duration: 0.5s;
-			animation-fill-mode: both;
-			animation-name: btnEntrance;
-		}
-
-		@keyframes btnEntrance {
-			from {
-				opacity: 0;
-				transform: scale3d(0.3, 0.3, 0.3);
-			}
-			to {
-				opacity: 1;
-			}
-			}
-
-</style>
-<script>
-	const BtnBackToTop = document.querySelector("#toTop")
-	
-	window.addEventListener("scroll", scrollFunction);
-	
-	function scrollFunction() {
-	  if (window.pageYOffset > 300) { // Show backToTopButton
-		if(!BtnBackToTop.classList.contains("btnEntrance")) {
-			BtnBackToTop.classList.remove("btnExit");
-			BtnBackToTop.classList.add("btnEntrance");
-			BtnBackToTop.style.display = "block";
-		}
-	  }
-	  else { // Hide backToTopButton
-		if(BtnBackToTop.classList.contains("btnEntrance")) {
-			BtnBackToTop.classList.remove("btnEntrance");
-			BtnBackToTop.classList.add("btnExit");
-			  setTimeout(function() {
-			BtnBackToTop.style.display = "none";
-		  }, 250);
-		}
-	  }
-	}
-	
-	
-	
-	BtnBackToTop.addEventListener("click", backToTop);
-	
-	function backToTop() {
-		window.scrollTo(0, 0);
-	}
-	let currentWidth = document.body.clientWidth;
-	
-	let styles = calculatingStyles(currentWidth);
-	
-	window.addEventListener("resize", function(event) {
-		currentWidth = document.body.clientWidth;
-		styles = calculatingStyles(currentWidth);
-		var acc = document.getElementsByClassName("accordion");
-		var i;
-		for (i = 0; i < acc.length; i++) {
-			if (acc[i].classList.contains("panel-description")){
-			acc[i].classList.toggle("active");
-			acc[i].style.borderRadius = "10px 10px 0px 0px"
-			var panel = acc[i].nextElementSibling;
-			panel.style.display="block"
-			panel.style.maxHeight = panel.scrollHeight + "px";
-		}
-		}
-	})
-	
-	function calculatingStyles(width){
-	
-	let listOfStyles = {widthForActive:"", widthForClosed:"", marginForActive:"", marginForClosed:""};
-	
-	if (width >= 1400){
-		listOfStyles.widthForActive = "85";
-		listOfStyles.widthForClosed = "50";
-		console.log(listOfStyles)
-	}else if((width < 1400) && (currentWidth >= 600)){
-			listOfStyles.widthForActive = "98";
-			listOfStyles.widthForClosed = "80";
-	} else {
-		listOfStyles.widthForActive = "100";
-		listOfStyles.widthForClosed = "95";
-	}
-	listOfStyles.marginForActive = (100-listOfStyles.widthForActive)/2 + '%';
-	listOfStyles.marginForClosed = (100-listOfStyles.widthForClosed)/2 + '%';
-	listOfStyles.widthForActive = listOfStyles.widthForActive + "%";
-	listOfStyles.widthForClosed = listOfStyles.widthForClosed + "%";
-	
-	return listOfStyles
-	
-	};
-	
-	
-	
-	
-	
-	var acc = document.getElementsByClassName("accordion");
-	var i;
-	
-	for (i = 0; i < acc.length; i++) {
-		if (acc[i].nextElementSibling.classList.contains("panel-description")){
-			acc[i].classList.toggle("active");
-			acc[i].style.borderRadius = "10px 10px 0px 0px"
-			var panel = acc[i].nextElementSibling;
-			panel.style.display="block"
-			panel.style.maxHeight = panel.scrollHeight + "px";
-		}
-	  acc[i].addEventListener("click", function() {
-		this.classList.toggle("active");
-		let button = this;
-		var panel = this.nextElementSibling;
-		if (panel.style.maxHeight) {
-			let height = panel.style.maxHeight;
-			let time = parseInt((height.slice(0,-2)))/7;
-			if (time>300){
-				time =200;
-			}
-			panel.style.maxHeight = null;
-			setTimeout(function() {
-				panel.style.display = "none"
-				button.style.borderRadius = "10px";
-				if (button.classList.contains("accordion-result") || button.classList.contains("accordion-heading")){
-					button.style.width = styles.widthForClosed;
-					button.style.marginRight = styles.marginForClosed;
-					button.style.marginLeft = styles.marginForClosed;
-		}
-		  }, time);
-		} else {
-			if (button.classList.contains("accordion-result") || button.classList.contains("accordion-heading")){
-				button.style.width =  styles.widthForActive;
-				button.style.marginRight = styles.marginForActive;
-				button.style.marginLeft = styles.marginForActive;
-				setTimeout(function() {
-				panel.style.display = "block"
-				panel.style.maxHeight = panel.scrollHeight + "px";
-				panel.parentElement.style.maxHeight = Number(panel.parentElement.style.maxHeight.slice(0, -2)) + panel.scrollHeight + "px";
-				button.style.borderRadius = "10px 10px 0px 0px";
-			}, 150);}
-			else{
-				panel.style.display = "block"
-				panel.style.maxHeight = panel.scrollHeight + "px";
-				panel.parentElement.style.maxHeight = Number(panel.parentElement.style.maxHeight.slice(0, -2)) + panel.scrollHeight + "px";
-				button.style.borderRadius = "10px 10px 0px 0px"
-			}
-		}
-	  });
-	}
-	
-	
 	</script>
-	<style>
-	
-	.btnExit{
-				animation-duration: 0.5s;
-				animation-fill-mode: both;
-				animation-name: btnExit;
-		}
-	
-	@keyframes btnExit {
-		from {
-					opacity: 1;
-				}
-				to {
-					opacity: 0;
-					transform: scale3d(0.8, 0.8, 0.8);
-				}
-				}
-	
-	
-	.btnEntrance{
-				animation-duration: 0.5s;
-				animation-fill-mode: both;
-				animation-name: btnEntrance;
-			}
-	
-			@keyframes btnEntrance {
-				from {
-					opacity: 0;
-					transform: scale3d(0.3, 0.3, 0.3);
-				}
-				to {
-					opacity: 1;
-				}
-				}
-	
-	</style>
 	</body>
 	</html>
