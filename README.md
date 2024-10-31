@@ -10,9 +10,9 @@ From Oakvar store:
 ```bash
 ov module install superhumanreporter
 ```
-From a direct link on GitHub:
+Or make git clone of the current repository directly into "reporters" folder of Oakvar:
 ```bash
-ov module install https://github.com/dna-seq/superhumanreporter
+git clone https://github.com/dna-seq/superhumanreporter
 ```
 
 ## Manual installation
