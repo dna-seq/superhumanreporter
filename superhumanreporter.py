@@ -17,7 +17,7 @@ class Reporter(CravatReport):
         self.savepath = kwargs["savepath"]
 
 
-    async def run(self):
+    async def run(self, *args, **kwargs):
         self.setup()
         self.write_data()
         self.end()
